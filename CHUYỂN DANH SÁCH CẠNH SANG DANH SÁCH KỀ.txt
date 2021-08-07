@@ -1,0 +1,36 @@
+#include<stdio.h>
+int a[1000][1000];
+void inDSK(int &v){
+	int i,j;
+	for(i=1;i<=v;i++){
+		printf("%d: ", i);
+		for(j=1;j<=v;j++){
+			if(a[i][j]==1){
+				printf("%d ", j);
+			}
+		}
+		printf("\n");
+	}
+}
+int main(){
+	int i,j,k,l,test;
+	int v,e;
+	scanf("%d", &test);
+	for(l=1;l<=test;l++){
+		scanf("%d", &v);
+		scanf("%d", &e);
+		for(i=1;i<=v;i++){
+			for(j=1;j<=v;j++){
+				a[i][j]=0;
+			}
+		}
+		for(k=0;k<e;k++){
+			scanf("%d", &i);
+			scanf("%d", &j);
+			a[j][i]=1;
+			a[i][j]=1;
+		}
+		inDSK(v);
+	}
+	return 0;
+}

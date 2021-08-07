@@ -1,0 +1,44 @@
+//bai nay ra kq dung nhung cho len code ptit ko biet sai o dau@@
+
+#include<stdio.h>
+#include <stdbool.h>
+//tim kiem theo chieu sau
+int a[1000][1000];
+bool xetDinh[1000];
+void docDSC(int v, int e){
+	int i, j;
+	int k=1;
+	for(i=1;i<=v;i++){
+		for(j=1;j<=v;j++){
+			a[i][j]=0;
+		}
+		xetDinh[i]=false;
+	}
+	while(k<=e){
+		scanf("%d%d", &i, &j);
+		a[i][j]=a[j][i]=1;
+		k++;
+	}
+}
+void duyetDFS(int v, int u){
+	int i;
+	xetDinh[u]=true;
+	printf("%d ", u);
+	for(i=1;i<=v;i++){
+		if(a[u][i]==1 && xetDinh[i]==false){
+		duyetDFS(v,i);
+		}
+	}
+}
+int main(){
+	int v, e, u, i;
+	int test;
+	scanf("%d", &test);
+	for(i=0;i<test;i++){
+		scanf("%d%d%d", &v, &e, &u);
+		docDSC(v,e);
+		duyetDFS(v,u);
+		printf("\n");
+	}
+	return 0;
+}

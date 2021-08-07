@@ -1,0 +1,31 @@
+#include<stdio.h>
+#define max 100
+void step(int n, int a[], int &count){
+	int i;
+	printf("Buoc %d: ", count);
+	count++;
+	for(i=0;i<n;i++){
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+}
+void swap(int i,int j, int a[]){
+	int tg=a[i];
+	a[i]=a[j];
+	a[j]=tg;
+}
+int main(){
+	int i,j,k,n,tg;
+	int count=1;
+	int a[max];
+	scanf("%d", &n);
+	for(i=0;i<n;i++){
+		scanf("%d", &a[i]);
+	}
+		for(i=0;i<n-1;i++){
+			for(j=i+1;j<n;j++){
+			if(a[j]<a[i]) swap(i,j,a);	
+			}
+			step(n,a,count);
+}		
+}

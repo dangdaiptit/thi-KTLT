@@ -1,0 +1,56 @@
+#include<stdio.h>
+#define MAX 100
+int n,a[MAX];
+bool ok=0;
+int check(){
+	int i, j;
+	i=1;
+	j=n;
+	while(i<j){
+		if(a[i]!=a[j]){
+			return 0;
+		}
+		i++;
+		j--;
+	}
+	return 1;
+}
+void khoitao(){
+	scanf("%d",&n);
+	int i;
+	for(i=1;i<=n;i++){
+		a[i]=0;
+	}
+}
+void inch(){
+	int i;
+	if(check()==1){
+		for(i=1;i<=n;i++){
+		printf("%d\t",a[i]);
+	}
+	printf("\n");
+	}
+}
+void sinhtiep(){
+	int i=n;
+	while(a[i]!=0) i--;
+	a[i]=1;
+	int j;
+	if(i==0){
+		ok=1;
+	}
+	else{
+		for(j=i+1;j<=n;j++){
+			a[j]=0;
+	}
+	}
+
+}
+int main(){
+	khoitao();
+	while(!ok){
+	inch();
+	sinhtiep();	
+	}
+	return 0;
+}

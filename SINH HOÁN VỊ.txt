@@ -1,0 +1,55 @@
+#include<stdio.h>
+#define MAX 100
+int n[MAX],a[MAX];
+bool ok=0;
+void khoitao(int j){
+	scanf("%d",&n[j]);
+	int i;
+	for(i=1;i<=n[j];i++){
+		a[i]=i;
+	}
+}
+void inch(int j){
+	int i;
+	for(i=1;i<=n[j];i++){
+		printf("%d",a[i]);
+	}
+	printf(" ");
+}
+void hoanvi(int &x, int &y){
+	int tg=x; x=y;y=tg;
+}
+void sinhtiep(int j){
+	int i=n[j]-1;
+	while(a[i]>a[i+1] && i>0){
+		i--;
+	}
+	if(i==0) ok=1;
+	else{
+		int k=n[j];
+		int j;
+		while(a[i]>a[k]) k--;
+		hoanvi(a[i],a[k]);
+	}
+	int r=i+1;
+	int s=n[j];
+	while(r<s){
+		hoanvi(a[r],a[s]);
+		r++;
+		s--;
+	}
+}
+int main(){
+	int b,a[10], j;
+	scanf("%d", &b);
+	for(j=0;j<b;j++){
+	khoitao(j);
+	while(!ok){
+    inch(j);
+    sinhtiep(j);
+   }
+	printf("\n");
+   ok=0;
+}
+	return 0;
+}

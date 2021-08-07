@@ -1,0 +1,50 @@
+#include<stdio.h>
+int a[1000][1000];
+int xetDinh[1000];
+int queue[1000];
+void docDSC(int v, int e){
+	int i, j;
+	int k=1;
+	for(i=1;i<=v;i++){
+		for(j=1;j<=v;j++){
+			a[i][j]=0;
+		}
+		xetDinh[i]=0;
+	}
+	while(k<=e){
+		scanf("%d%d", &i, &j);
+		a[i][j]=a[j][i]=1;
+		k++;
+	}
+}
+void duyetBFS(int v, int e, int u){
+	int dauq=1, cuoiq=1;
+	queue[dauq]=u;
+	xetDinh[u]=1;
+	do{
+		int k=queue[dauq];
+		dauq=dauq+1;
+		int i;
+		for(i=1;i<=v;i++){
+			if(a[k][i]==1&&xetDinh[i]==0){
+				printf("%d ",i);
+				cuoiq++;
+				queue[cuoiq]=i;
+				xetDinh[i]=1;
+			}
+		}
+	}while(dauq<=cuoiq);
+}
+int main(){
+	int v, e, u, i;
+	int test;
+	scanf("%d", &test);
+	for(i=0;i<test;i++){
+		scanf("%d%d%d", &v, &e, &u);
+		docDSC(v,e);
+		printf("%d ", u);
+		duyetBFS(v, e, u);
+		printf("\n");
+	}
+	return 0;
+}

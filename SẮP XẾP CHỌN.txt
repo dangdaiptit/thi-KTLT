@@ -1,0 +1,34 @@
+#include <stdio.h>
+#define max 100
+
+void step(int n, int a[], int &count){
+	int i;
+	printf("Buoc %d: ", count);
+	count++;
+	for(i=0;i<n;i++){
+		printf("%d ", a[i]);
+	}
+	printf("\n");
+}
+int main(){
+	int i,j,n,k;
+	int count=1;
+	int a[max];
+	scanf("%d", &n);
+	for(i=0;i<n;i++){
+		scanf("%d", &a[i]);
+	}
+	for(i=0;i<n-1;i++){
+		int min = a[i];
+		for(j=i+1;j<n;j++){
+			if(a[j]<min){
+				min=a[j];
+				k=j;
+			}
+		}
+	int tg = a[i];
+	a[i]=a[k];
+	a[k]=tg;
+	step(n,a,count);
+	}
+}

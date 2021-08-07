@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+	int sn;
+	node *next;
+};
+struct danhsach{
+	node *dau, *cuoi;
+};
+void khoiTao(danhsach &d){
+	d.dau=d.cuoi=NULL;
+}
+void themCuoi(danhsach &d){
+	int x;
+	scanf("%d", &x);
+	node *p= (node*)malloc(sizeof(node));
+	p->sn=x;
+	p->next=NULL;
+	if(d.dau==NULL){
+		d.dau=d.cuoi=p;
+	}
+	else{
+		d.cuoi->next=p;
+		d.cuoi=p;
+	}
+}
+void xoa(danhsach &d){
+	node *i=d.dau;
+	int x;
+	scanf("%d", &x);
+	
+	while(i){
+		if(i->sn==x){
+			i=i->next;
+		}
+		else {
+			printf("%d ", i->sn);
+			i=i->next;
+		}
+	}
+}
+int check(danhsach &d, node *q){
+	node *p=d.dau;
+	int x=0;
+	while(p!=q){
+		if(q->sn==p->sn){
+		x++;;
+		break;
+		}
+		p=p->next;
+	}
+	if (x==0) return 1;
+	else return 0;	
+}
+void hien(danhsach &d){
+	node *q=d.dau;
+	printf("%d ", q->sn);
+	q=q->next;
+	while(q){
+		if(check(d,q)){
+		printf("%d ", q->sn);
+		}
+		q=q->next;
+	} 
+}
+int main(){
+	danhsach d;
+	khoiTao(d);
+	int n, i;
+	scanf("%d", &n);
+	for(i=0;i<n;i++){
+		themCuoi(d);
+	}
+//	xoa(d);
+	hien(d);
+	return 0;
+}

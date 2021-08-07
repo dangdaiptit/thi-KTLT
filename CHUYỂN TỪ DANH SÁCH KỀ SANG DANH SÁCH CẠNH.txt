@@ -1,0 +1,41 @@
+#include<stdio.h>
+int a[100][100];
+void inDSC(int N){
+	int i,j;
+	for(i=1;i<=N;i++){
+		for(j=i+1;j<=N;j++){
+			if(a[i][j]==1){
+				printf("%d %d\n",i,j);
+			}
+		}
+	}
+}
+int main(){
+	char c;
+	int i,j,k=0,N;
+	scanf("%d", &N);
+//	fflush(stdin); neu co ham nay thi k phai bang 1
+	for(i=1;i<=N;i++){
+		for(j=i+1;j<=N;j++){
+			a[i][j]=0;
+		}
+	}
+	j=0;
+	while(k<=N){
+		scanf("%c", &c);
+		if(c=='\n'){
+			a[k][j]=1;
+			k++;
+			j=0;
+		}
+		if(c==' '){
+			a[k][j]=1;
+			j=0;
+		}
+		if(c>='0'&&c<='9'){
+				j=10*j+(c-'0');				
+		}
+	}
+	inDSC(N);
+	return 0;
+}
